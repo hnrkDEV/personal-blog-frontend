@@ -3,16 +3,21 @@ import {
   InstagramLogoIcon,
   LinkedinLogoIcon,
 } from "@phosphor-icons/react";
+import { useContext, type ReactNode } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function Footer() {
-  let data = new Date().getFullYear();
+  const data = new Date().getFullYear();
+  const { usuario } = useContext(AuthContext);
 
-  return (
-    <>
+  let componente: ReactNode;
+
+  if (usuario.token !== "") {
+    componente = (
       <div className="flex justify-center bg-indigo-900 text-white">
         <div className="container flex flex-col items-center py-4">
-          <p className="text-xl font-bold">
-            Blog Pessoal Generation | Copyright: {data}
+          <p className="font-bold text-xl">
+            Blog Pessoal João Henrique | Copyright: {data}
           </p>
           <p className="text-lg">Acesse nossas redes sociais</p>
           <div className="flex gap-2">
@@ -31,8 +36,9 @@ function Footer() {
           </div>
         </div>
       </div>
-    </>
-  );
+    );
+  }
+  return <>{componente}</>;
 }
 
 export default Footer;

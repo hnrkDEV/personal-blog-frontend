@@ -14,7 +14,14 @@ function CardPostagem({ postagem }: CardPostagensProps) {
       <div>
         <div className="flex w-full bg-indigo-400 py-2 px-4 items-center gap-4">
           <img
-            src={postagem.user?.picture}
+            src={
+              postagem.user?.picture ||
+              "https://ik.imagekit.io/2zvbvzaqt/usuario.png"
+            }
+            onError={(e) =>
+              (e.currentTarget.src =
+                "https://ik.imagekit.io/2zvbvzaqt/usuario.png")
+            }
             className="h-12 rounded-full"
             alt={postagem.user?.name}
           />
